@@ -17,11 +17,11 @@ CGFloat calculatedRadius(CGRect visibleRect, CGFloat radius) {
         return radius;
     }
 
-    if (height >= 260 && height <= 450 && width >= 100 && width <= 260) {
+    if (width > 100 || height > 100) {
         return radius;
     }
 
-    if ((fabs(width - height) < 1.0 || width >= 250) && height <= 160) {
+    if (fabs(width - height) < 1.0) {
         return floor(MIN(width, height) / 2.0);
     }
 
@@ -31,9 +31,8 @@ CGFloat calculatedRadius(CGRect visibleRect, CGFloat radius) {
 %hook MTMaterialLayer
 - (CGFloat)cornerRadius {
     CGFloat radius = %orig;
-    NSArray <NSString *> *titles = @[@"modules", @"moduleFill.highlight.generatedRecipe", @"modulesSheer"];
 
-    if ([titles containsObject:self.recipeName]) {
+    if ([self.recipeName isEqualToString:@"modulesSheer"]) {
         radius = calculatedRadius(self.visibleRect, radius);
     }
 
