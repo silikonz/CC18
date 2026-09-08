@@ -31,7 +31,7 @@ CGFloat calculatedRadius(CGRect visibleRect, CGFloat radius) {
 %hook MTMaterialLayer
 - (CGFloat)cornerRadius {
     CGFloat radius = %orig;
-    NSArray <NSString *> *titles = @[@"modules", @"moduleFill.highlight.generatedRecipe"];
+    NSArray <NSString *> *titles = @[@"modules", @"moduleFill.highlight.generatedRecipe", @"modulesSheer"];
 
     if ([titles containsObject:self.recipeName]) {
         radius = calculatedRadius(self.visibleRect, radius);
