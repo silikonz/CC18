@@ -17,11 +17,11 @@ CGFloat calculatedRadius(CGRect visibleRect, CGFloat radius) {
         return radius;
     }
 
-    if (height >= 200 || width >= 200) {
+    if (height >= 260 && height <= 450 && width >= 100 && width <= 260) {
         return radius;
     }
 
-    if (fabs(width - height) < 2.0) {
+    if ((fabs(width - height) < 1.0 || width >= 250) && height <= 160) {
         return floor(MIN(width, height) / 2.0);
     }
 
